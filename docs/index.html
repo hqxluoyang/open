@@ -18,6 +18,7 @@
     <div id="app">
         <kai-header header-content="Mine Title"></kai-header>
         <kai-button>Click Me</kai-button>
+        <kai-separator  header-content="Mine Separator"></kai-separator>
     </div>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -65,8 +66,27 @@
                 }
             }
         }
+        const Separator = {
+            template: `<div v-bind:class="separatorStyle">{{ separatorContent}}</div>`,
+            props: ['separatorContent'],
+            data: function () {
+                return {
+                    separatorStyle: {
+                        fontFamily: 'Open Sans',
+                        fontSize: '1.4rem',
+                        color: '#6a6a6a',
+                        backgroundColor: '#f0f0f0',
+                        width: '100%',
+                        height: '2.4rem',
+                        paddingLeft: '1rem',
+                        paddingRight: '1rem'
+                    }
+                }
+            }
+        }
         Vue.component('kai-header', Header);
         Vue.component('kai-button', Button);
+        Vue.component('kai-separator', Separator);
         let app = new Vue({
             el: '#app'
         });
