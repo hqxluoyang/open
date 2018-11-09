@@ -53,13 +53,13 @@
             props: ['headerContent']
         }; // <kai-header header-content="asdf"></kai-header>
         const Button = {
-            template: `<button v-bind:style="buttonStyle"><slot></slot></button>`,
+            template: `<div v-bind:style="buttonStyle"><slot></slot></div>`,
             data: function () {
                 return {
                     buttonStyle: {
                         height: '3.6rem',
                         width: '100%',
-                        padding: '1rem',
+                        margin: '1rem',
                         borderRadius: '0.2rem',
                         // backgroundColor:'' // GS20??
                     }
