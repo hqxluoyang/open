@@ -5,8 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Jep jep</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 </head>
 <body>
+    <div id="app">
+        <kai-header header-content="Mine Title"></kai-header>
+    </div>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const Header = {
+            template: `<div v-bind:style="headerStyle">
+                            <div v-bind:style="headerContentStyle">{{ headerContent }}</div>
+                        </div>`,
+            data: function () {
+                return {
+                    headerStyle: {
+                        // height: '28px',
+                        height: '2.8rem',
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: 'purple'
+                    },
+                    headerContentStyle: {
+                        width: 'calc(100% - 2rem)',
+                        // height: '17px',
+                        height: '1.7rem',
+                        // lineHeight: '17px',
+                        lineHeight: '1.7rem',
+                        fontFamily: 'Open Sans',
+                        textAlign: 'center',
+                        color: '#ffffff'
+                    }
+                }
+            },
+            props: ['headerContent']
+        }; // <Header header-content="asdf"></Header>
+    </script>
     :DDDDDDD
 </body>
 </html>
