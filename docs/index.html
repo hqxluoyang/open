@@ -17,6 +17,7 @@
 <body>
     <div id="app">
         <kai-header header-content="Mine Title"></kai-header>
+        <kai-button>Click Me</kai-button>
     </div>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -50,7 +51,22 @@
             },
             props: ['headerContent']
         }; // <kai-header header-content="asdf"></kai-header>
+        const Button = {
+            template: `<button v-bind:style="buttonStyle"><slot></slot></button>`,
+            data: function () {
+                return {
+                    buttonStyle: {
+                        height: '3.6rem',
+                        width: '100%',
+                        padding: '1rem',
+                        borderRadius: '0.2rem',
+                        // backgroundColor:'' // GS20??
+                    }
+                }
+            }
+        }
         Vue.component('kai-header', Header);
+        Vue.component('kai-button', Button);
         let app = new Vue({
             el: '#app'
         });
