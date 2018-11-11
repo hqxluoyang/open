@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Jep jep</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <title>KaiOS UI Components demo</title>
     <style>
         html,body{
           margin:0;
@@ -15,84 +13,6 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <kai-header header-content="Mine Title"></kai-header>
-        <kai-button>Click Me</kai-button>
-        <kai-separator separator-content="Mine Separator"></kai-separator>
-    </div>
-    <!-- development version, includes helpful console warnings -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-        const Header = {
-            template: `<div v-bind:style="headerStyle">
-                            <div v-bind:style="headerContentStyle">{{ headerContent }}</div>
-                        </div>`,
-            data: function () {
-                return {
-                    headerStyle: {
-                        // height: '28px',
-                        height: '2.8rem',
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: 'purple'
-                    },
-                    headerContentStyle: {
-                        width: 'calc(100% - 2rem)',
-                        // height: '17px',
-                        height: '1.7rem',
-                        // lineHeight: '17px',
-                        lineHeight: '1.7rem',
-                        fontFamily: 'Open Sans',
-                        textAlign: 'center',
-                        color: '#ffffff'
-                    }
-                }
-            },
-            props: ['headerContent']
-        }; // <kai-header header-content="asdf"></kai-header>
-        const Button = {
-            template: `<div v-bind:style="buttonStyle"><slot></slot></div>`,
-            data: function () {
-                return {
-                    buttonStyle: {
-                        height: '3.6rem',
-                        width: '100%',
-                        margin: '1rem',
-                        borderRadius: '0.2rem',
-                        backgroundColor: 'purple',
-                        boxSizing:'border-box'
-                        // backgroundColor:'' // GS20??
-                    }
-                }
-            }
-        }
-        const Separator = {
-            template: `<div v-bind:class="separatorStyle">{{ separatorContent}}</div>`,
-            props: ['separatorContent'],
-            data: function () {
-                return {
-                    separatorStyle: {
-                        fontFamily: 'Open Sans',
-                        fontSize: '1.4rem',
-                        color: '#6a6a6a',
-                        backgroundColor: '#f0f0f0',
-                        width: '100%',
-                        height: '2.4rem',
-                        paddingLeft: '1rem',
-                        paddingRight: '1rem'
-                    }
-                }
-            }
-        }
-        Vue.component('kai-header', Header);
-        Vue.component('kai-button', Button);
-        Vue.component('kai-separator', Separator);
-        let app = new Vue({
-            el: '#app'
-        });
-    </script>
     :DDDDDDD
 </body>
 </html>

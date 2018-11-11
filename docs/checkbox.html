@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 62.5%;
+        }
+    </style>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <kai-button button-text="Hello World"></kai-button>
+    </div>
+    <script>
+        const Checkbox = {
+            template: `<div v-bind:style="listStyle">
+                            <div v-bind:style="testContainerStyle">
+                                <div v-bind:style="primaryText"></div>
+                                <div v-bind:style="secondaryText"></div>
+                            </div>
+                            <input v-bind:style="checkboxStyle" type="checkbox" name="vehicle1" value="Bike">
+                        </div>`,
+            props: ['primaryText', 'secondaryText'],
+            data: function () {
+                return {
+                    listStyle: {
+                        height: '6rem',
+                        width: '100%',
+                        padding: '1rem',
+                        boxSizing: 'box-border'
+                    },
+                    primaryTextStyle: {
+                        fontFamily: 'Open Sans',
+                        fontSize: '1.7rem',
+                        color: '#323232'
+                    },
+                    secondaryTextStyle: {
+                        fontFamily: 'Open Sans',
+                        fontSize: '1.4rem',
+                        color: '#6a6a6a'
+                    }
+                }
+            }
+        }
+        Vue.component('kai-checkbox', Checkbox);
+        const app = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>

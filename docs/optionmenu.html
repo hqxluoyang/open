@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 62.5%;
+        }
+    </style>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <kai-option option-text="Mine Option"></kai-option>
+    </div>
+    <script>
+        const OptionMenu = {
+            template: `<div v-bind:style="optionMenuStyle">{{optionText}}</div>`,
+            props: ['optionText'],
+            data: function () {
+                return {
+                    optionMenuStyle: {
+                        height: '4.8rem',
+                        padding: '1rem',
+                        fontFamily:'Open Sans',
+                        fontSize:'1.4rem'
+                    }
+                }
+            }
+        }
+        Vue.component('kai-option', OptionMenu);
+        const app = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>
