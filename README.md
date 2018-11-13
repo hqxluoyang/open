@@ -7,3 +7,7 @@ Implementation of the UI Components for KaiOS in Vue.
 ### Telegram client
 
 Can't. Webassembly library from Telegram is not done. https://github.com/tdlib/td/issues/127
+
+### Whatsapp client
+
+Well it is forbidden.
