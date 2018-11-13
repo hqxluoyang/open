@@ -11,3 +11,7 @@ Can't. Webassembly library from Telegram is not done. https://github.com/tdlib/t
 ### Whatsapp client
 
 Well it is forbidden.
+
+### Github client
+
+Possible. REST dependent.
