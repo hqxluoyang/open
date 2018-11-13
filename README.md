@@ -1,3 +1,3 @@
 # UI Component for KaiOS site and application
 
-For shits and giggles. 
+Implementation of the UI Components for KaiOS in Vue.
