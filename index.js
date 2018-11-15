@@ -1,4 +1,7 @@
 // COMPONENTS
+
+// TODO: Progress, Slider, Input, Toast
+
 export const Header = {
     template: `<div v-bind:style="headerStyle">
                     <div v-bind:style="headerTextStyle">{{ headerText }}</div>
@@ -28,77 +31,6 @@ export const Header = {
     },
     props: ['headerText']
 }; // <kai-header header-texts="asdf"></kai-header>
-
-export const Dialog = {
-    // TODO: text wrap?
-    template: `<div v-bind:style="dialogStyle">
-                    <slot></slot>
-                </div>`,
-    data: function () {
-        return {
-            dialogStyle: {
-                height: '100%',
-                width: '100%',
-                padding: '1rem'
-            }
-        }
-    }
-}; // <kai-dialog>Stuff</kai-dialog>
-
-export const List = {
-    template: `<div v-bind:style="listStyle">
-                    <div v-bind:style="primaryTextStyle">{{ primaryText }}</div>
-                    <div v-bind:style="secondaryTextStyle">{{ secondaryText }}</div>
-                </div>`,
-    props: ['primaryText', 'secondaryText'],
-    data: function () {
-        return {
-            listStyle: {
-                height: '6rem',
-                width: '100%',
-                padding: '1rem',
-                boxSizing: 'border-box'
-            },
-            primaryTextStyle: {
-                fontFamily: 'Open Sans',
-                fontSize: '1.7rem',
-                color: '#323232'
-            },
-            secondaryTextStyle: {
-                fontFamily: 'Open Sans',
-                fontSize: '1.4rem',
-                color: '#6a6a6a'
-            }
-        }
-    }
-}; // <kai-list primary-text="Hello World" secondary-text="Hello World Description"></kai-list>
-
-export const Button = {
-    template: `<div v-bind:style="buttonStyle">
-                  <div v-bind:style="buttonContentStyle">{{ buttonText }}</div>
-                </div>`,
-    props: ['buttonText'],
-    data: function () {
-        return {
-            buttonStyle: {
-                height: '3.6rem',
-                width: '100%',
-                paddingLeft: '1rem',
-                paddingRight: '1rem',
-                boxSizing: 'border-box',
-                color: 'white',
-                lineHeight: '3.6rem',
-                fontSize: '1.7rem',
-                fontFamily: 'Open Sans',
-                textAlign: 'center',
-            },
-            buttonContentStyle: {
-                backgroundColor:'purple',
-                borderRadius: '0.2rem'
-            }
-        }
-    }
-}; // need better doc... is this like header? What's GS20?
 
 export const Tab = {
     template: `<div v-bind:style="headerStyle">
@@ -145,25 +77,6 @@ export const Tab = {
     }
 }; //  <kai-tab v-bind:tabs="tabs"></kai-tab>
 // tabs:['Tab One','Tab Two','Tab Three','Tab Four']
-
-export const Separator = {
-    template: `<div v-bind:style="separatorStyle">{{ separatorContent}}</div>`,
-    props: ['separatorContent'],
-    data: function () {
-        return {
-            separatorStyle: {
-                fontFamily: 'Open Sans',
-                fontSize: '1.4rem',
-                color: '#6a6a6a',
-                backgroundColor: '#f0f0f0',
-                width: '100%',
-                height: '2.4rem',
-                paddingLeft: '1rem',
-                paddingRight: '1rem'
-            }
-        }
-    }
-}; // <kai-separator separator-content="Hello World"></kai-separator>
 
 export const SoftwareKey = { // doc not clear of style https://developer.kaiostech.com/first-app/softkeys
     template: `<div v-bind:style="softkeyStyle">
@@ -265,6 +178,114 @@ export const SoftwareKey = { // doc not clear of style https://developer.kaioste
     }
 }; // <kai-softwarekey left-key-text="back" center-key-text="SELECT" right-key-text="options"></kai-softwarekey>
 
+export const List = {
+    template: `<div v-bind:style="listStyle">
+                    <div v-bind:style="primaryTextStyle">{{ primaryText }}</div>
+                    <div v-bind:style="secondaryTextStyle">{{ secondaryText }}</div>
+                </div>`,
+    props: ['primaryText', 'secondaryText'],
+    data: function () {
+        return {
+            listStyle: {
+                height: '6rem',
+                width: '100%',
+                padding: '1rem',
+                boxSizing: 'border-box'
+            },
+            primaryTextStyle: {
+                fontFamily: 'Open Sans',
+                fontSize: '1.7rem',
+                color: '#323232'
+            },
+            secondaryTextStyle: {
+                fontFamily: 'Open Sans',
+                fontSize: '1.4rem',
+                color: '#6a6a6a'
+            }
+        }
+    }
+}; // <kai-list primary-text="Hello World" secondary-text="Hello World Description"></kai-list>
+
+export const Separator = {
+    template: `<div v-bind:style="separatorStyle">{{ separatorContent}}</div>`,
+    props: ['separatorContent'],
+    data: function () {
+        return {
+            separatorStyle: {
+                fontFamily: 'Open Sans',
+                fontSize: '1.4rem',
+                color: '#6a6a6a',
+                backgroundColor: '#f0f0f0',
+                width: '100%',
+                height: '2.4rem',
+                paddingLeft: '1rem',
+                paddingRight: '1rem'
+            }
+        }
+    }
+}; // <kai-separator separator-content="Hello World"></kai-separator>
+
+export const Checkbox = {
+    template: `<div v-bind:class="listStyle">
+                    <div v-bind:class="primaryText"></div>
+                    <div v-bind:class="secondaryText"></div>
+                </div>`,
+    props: ['primaryText', 'secondaryText'],
+    data: function () {
+        return {
+            listStyle: {
+                height: '6rem',
+                width: '100%',
+                padding: '1rem',
+                boxSizing: 'box-border'
+            },
+            primaryTextStyle: {
+                fontFamily: 'Open Sans',
+                fontSize: '1.7rem',
+                color: '#323232'
+            },
+            secondaryTextStyle: {
+                fontFamily: 'Open Sans',
+                fontSize: '1.4rem',
+                color: '#6a6a6a'
+            }
+        }
+    }
+}
+
+export const Progress = {}
+
+export const Slider = {}
+
+export const Button = {
+    template: `<div v-bind:style="buttonStyle">
+                  <div v-bind:style="buttonContentStyle">{{ buttonText }}</div>
+                </div>`,
+    props: ['buttonText'],
+    data: function () {
+        return {
+            buttonStyle: {
+                height: '3.6rem',
+                width: '100%',
+                paddingLeft: '1rem',
+                paddingRight: '1rem',
+                boxSizing: 'border-box',
+                color: 'white',
+                lineHeight: '3.6rem',
+                fontSize: '1.7rem',
+                fontFamily: 'Open Sans',
+                textAlign: 'center',
+            },
+            buttonContentStyle: {
+                backgroundColor:'purple',
+                borderRadius: '0.2rem'
+            }
+        }
+    }
+}; // need better doc... is this like header? What's GS20?
+
+export const Input = {};
+
 export const OptionMenu = { // apparently selected and unselected styles, no font specified in doc..
     template: `<div v-bind:style="optionMenuStyle">{{optionText}}</div>`,
     props: ['optionText'],
@@ -303,33 +324,23 @@ export const ValueSelector = { // doc has way too little...
     }
 };
 
-const Checkbox = {
-    template: `<div v-bind:class="listStyle">
-                    <div v-bind:class="primaryText"></div>
-                    <div v-bind:class="secondaryText"></div>
+export const Dialog = {
+    // TODO: text wrap?
+    template: `<div v-bind:style="dialogStyle">
+                    <slot></slot>
                 </div>`,
-    props: ['primaryText', 'secondaryText'],
     data: function () {
         return {
-            listStyle: {
-                height: '6rem',
+            dialogStyle: {
+                height: '100%',
                 width: '100%',
-                padding: '1rem',
-                boxSizing: 'box-border'
-            },
-            primaryTextStyle: {
-                fontFamily: 'Open Sans',
-                fontSize: '1.7rem',
-                color: '#323232'
-            },
-            secondaryTextStyle: {
-                fontFamily: 'Open Sans',
-                fontSize: '1.4rem',
-                color: '#6a6a6a'
+                padding: '1rem'
             }
         }
     }
-}
+}; // <kai-dialog>Stuff</kai-dialog>
+
+export const Toast = {};
 
 // MIXINS
 export const NetworkMixin = {
