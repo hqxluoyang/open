@@ -1,17 +1,79 @@
 # UI Component for KaiOS site and application
 
-Implementation of the UI Components for KaiOS in Vue.
+Implementation of the UI Components for KaiOS in Vue. Screen:
+- Quarter Video Graphics Array (QVGA)
+- 320×240
 
-## To Build
+## UI Components
+KaiOS UI Components: https://developer.kaiostech.com/design-guide/ui-component
 
-### Telegram client
+## Typography
+KaiOS Typography: https://developer.kaiostech.com/design-guide/typography
 
-Can't. Webassembly library from Telegram is not done. https://github.com/tdlib/td/issues/127
+```js
+// ./typography.js
+export default {
+    'fontFamily': '"Open Sans", sans-serif',
+    'H1': {
+        typeface: 300,
+        pixel: '1.7rem',
+    },
+    'H2': {
+        typeface: 600,
+        pixel: '1.7rem'
+    },
+    'H3': {
+        typeface: 400,
+        pixel: '1.4rem'
+    },
+    'H4': {
+        typeface: 400,
+        pixel: '1.4rem'
+    },
+    'H5': {
+        typeface: 600,
+        pixel: '1.4rem'
+    },
+    'P.PRI': {
+        typeface: 400,
+        pixel: '1.7rem'
+    },
+    'P.SEC': {
+        typeface: 400,
+        pixel: '1.4rem'
+    },
+    'P.THI': {
+        typeface: 400,
+        pixel: '1.2rem'
+    },
+    'P/UL': {
+        typeface: 400,
+        pixel: '1.7rem'
+    },
+    'P.LINK': {
+        typeface: 700,
+        pixel: '1.7rem'
+    },
+    'P.BTN': {
+        typeface: 400,
+        pixel: '1.7rem'
+    }
+};
+```
 
-### Whatsapp client
+## Getting Started
 
-Well it is forbidden.
+Do:
+- import KaiOS specific fonts
+- import KaiOS specific typography styles
+- import Vue
+- import KaiOS UI Components implemented in Vue
+- develop your app using this collection
 
-### Github client
+### Demo
 
-Possible. REST dependent.
+Check demo for examples.
+
+# Status
+
+Under construction.
