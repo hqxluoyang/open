@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 62.5%;
+        }
+    </style>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script>
+        const Typography = {
+            'fontFamily': '"Open Sans", sans-serif',
+            'H1': {
+                typeface: 300,
+                pixel: '1.7rem'
+            },
+            'H2': {
+                typeface: 600,
+                pixel: 17
+            },
+            'H3': {
+                typeface: 400,
+                pixel: 14
+            },
+            'H4': {
+                typeface: 400,
+                pixel: 14
+            },
+            'H5': {
+                typeface: 600,
+                pixel: 14
+            },
+            'P.PRI': {
+                typeface: 400,
+                pixel: 17
+            },
+            'P.SEC': {
+                typeface: 400,
+                pixel: 14
+            },
+            'P.THI': {
+                typeface: 400,
+                pixel: 12
+            },
+            'P/UL': {
+                typeface: 400,
+                pixel: 17
+            },
+            'P.LINK': {
+                typeface: 700,
+                pixel: 17
+            },
+            'P.BTN': {
+                typeface: 400,
+                pixel: 17
+            },
+        };
+
+        const DPadListViewMixin = {
+            data: function () {
+                return {
+                    currentIndex: 1
+                }
+            },
+            methods: {
+                handleKeydownEvent(e) {
+                    const nav = (move) => {
+                        const next = this.currentIndex + move;
+                        const items = document.querySelectorAll('.items');
+                        const targetElement = items[next];
+                        targetElement.focus();
+                    }
+
+                    switch (e.key) {
+                        case 'ArrowUp':
+                            nav(-1);
+                            break;
+                        case 'ArrowDown':
+                            nav(1);
+                            break;
+                        case 'ArrowRight':
+                            nav(1);
+                            break;
+                        case 'ArrowLeft':
+                            nav(-1);
+                            break;
+                    }
+                }
+            },
+            mounted() {
+                document.activeElement.addEventListener('keydown', this.handleKeydownEvent);
+
+                const items = document.querySelectorAll('.items');
+                if (items) {
+                    const targetElement = items[0];
+                    targetElement.focus();
+                }
+            },
+            beforeDestroyed() {
+                document.activeElement.removeEventListener('keydown', this.handleKeydownEvent);
+            }
+        };
+        const ListView = {
+            template: `<div v-bind:style="listViewStyle"><slot></slot></div>`,
+            mixins: [DPadListViewMixin],
+            data: function () {
+                return {
+                    listViewStyle: {
+                        height: '100%',
+                        width: '100%',
+                        overflowY: 'auto'
+                    }
+                }
+            }
+        };
+        const ListRow = {
+            template: `<div v-bind:style="listStyle">
+                    <div v-bind:style="primaryTextStyle">{{ primaryText }}</div>
+                    <div v-bind:style="secondaryTextStyle">{{ secondaryText }}</div>
+                </div>`,
+                props: ['primaryText', 'secondaryText'],
+                    data: function () {
+                        return {
+                            listStyle: {
+                                height: '6rem',
+                                width: '100%',
+                                padding: '1rem',
+                                boxSizing: 'border-box'
+                            },
+                            primaryTextStyle: {
+                                fontFamily: 'Open Sans',
+                                fontSize: '1.7rem',
+                                color: '#323232'
+                            },
+                            secondaryTextStyle: {
+                                fontFamily: 'Open Sans',
+                                fontSize: '1.4rem',
+                                color: '#6a6a6a'
+                            }
+                        }
+                    }
+        };
+        const Separator = {
+            template: `<div v-bind:style="separatorStyle">{{ separatorContent}}</div>`,
+            props: ['separatorContent'],
+            data: function () {
+                return {
+                    separatorStyle: {
+                        fontFamily: 'Open Sans',
+                        fontSize: '1.4rem',
+                        color: '#6a6a6a',
+                        backgroundColor: '#f0f0f0',
+                        width: '100%',
+                        height: '2.4rem',
+                        boxSizing: 'border-box',
+                        paddingLeft: '1rem',
+                        paddingRight: '1rem'
+                    }
+                }
+            }
+        };
+        const Page = {
+            template: `<ListView>
+                        <Separator separator-content="Basic Navigation"></Separator>
+                        <ListRow primary-text="ListView" secondary-text="Hello World Description" class="items" tabIndex="1"></ListRow>
+                        <ListRow primary-text="GridView" secondary-text="Hello World Description" class="items" tabIndex="2"></ListRow>
+                        <ListRow primary-text="TabView" secondary-text="Hello World Description" class="items" tabIndex="3"></ListRow>
+                        <Separator separator-content="Hmm"></Separator>
+                        <ListRow primary-text="Stuff" secondary-text="Hello World Description" class="items" tabIndex="4"></ListRow>
+                        <ListRow primary-text="Stuff" secondary-text="Hello World Description" class="items" tabIndex="5"></ListRow>
+                        <ListRow primary-text="Stuff" secondary-text="Hello World Description" class="items" tabIndex="6"></ListRow>
+                        <ListRow primary-text="Stuff" secondary-text="Hello World Description" class="items" tabIndex="7"></ListRow>
+                        <ListRow primary-text="Stuff" secondary-text="Hello World Description" class="items" tabIndex="8"></ListRow>
+                        <ListRow primary-text="Stuff" secondary-text="Hello World Description" class="items" tabIndex="9"></ListRow>
+                    </ListView>`,
+            components: {
+                ListView,
+                Separator,
+                ListRow
+            }
+        };
+
+        const routes = [
+            { path: '/', component: Page }
+        ];
+        const router = new VueRouter({
+            routes
+        });
+        const app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+
+</html>
