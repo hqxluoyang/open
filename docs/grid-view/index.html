@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 62.5%;
+        }
+    </style>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app" style="height:100%;width:100%">
+        <router-view></router-view>
+    </div>
+    <script>
+        const Typography = {
+            'fontFamily': '"Open Sans", sans-serif',
+            'H1': {
+                typeface: 300,
+                pixel: '1.7rem'
+            },
+            'H2': {
+                typeface: 600,
+                pixel: 17
+            },
+            'H3': {
+                typeface: 400,
+                pixel: 14
+            },
+            'H4': {
+                typeface: 400,
+                pixel: 14
+            },
+            'H5': {
+                typeface: 600,
+                pixel: 14
+            },
+            'P.PRI': {
+                typeface: 400,
+                pixel: 17
+            },
+            'P.SEC': {
+                typeface: 400,
+                pixel: 14
+            },
+            'P.THI': {
+                typeface: 400,
+                pixel: 12
+            },
+            'P/UL': {
+                typeface: 400,
+                pixel: 17
+            },
+            'P.LINK': {
+                typeface: 700,
+                pixel: 17
+            },
+            'P.BTN': {
+                typeface: 400,
+                pixel: 17
+            },
+        };
+
+        const DPadGridViewMixin = {
+            data: function () {
+                return {
+                    currentIndex: 1
+                }
+            },
+            methods: {
+                handleKeydownEvent(e) {
+                    const nav = (move) => {
+                        const next = this.currentIndex + move;
+                        const items = document.querySelectorAll('.items');
+                        const targetElement = items[next];
+                        targetElement.focus();
+                    }
+
+                    switch (e.key) {
+                        case 'ArrowUp':
+                            nav(-1);
+                            break;
+                        case 'ArrowDown':
+                            nav(1);
+                            break;
+                        case 'ArrowRight':
+                            nav(1);
+                            break;
+                        case 'ArrowLeft':
+                            nav(-1);
+                            break;
+                    }
+                }
+            },
+            mounted() {
+                document.activeElement.addEventListener('keydown', this.handleKeydownEvent);
+
+                const items = document.querySelectorAll('.items');
+                if (items) {
+                    const targetElement = items[0];
+                    targetElement.focus();
+                }
+            },
+            beforeDestroyed() {
+                document.activeElement.removeEventListener('keydown', this.handleKeydownEvent);
+            }
+        };
+        const GridView = {
+            template: `<div v-bind:style="listViewStyle"><slot></slot></div>`,
+            mixins: [DPadGridViewMixin],
+            data: function () {
+                return {
+                    listViewStyle: {
+                        display:'flex',
+                        flexDirection:'row',
+                        flexWrap:'wrap',
+                        justifyContent:'flex-start',
+                        alignItems:'flex-start',
+                        alignContents:'flex-start',
+                        height: '100vh',
+                        width: '100vw',
+                        overflowY: 'auto'
+                    }
+                }
+            }
+        };
+        const GridBlock = {
+            template: `<div v-bind:style="gridBlockStyle"></div>`,
+            props: ['primaryText', 'secondaryText'],
+            data: function () {
+                return {
+                    gridBlockStyle: {
+                        height: '5.6rem',
+                        width: '5.6rem',
+                        margin:'0.2rem',
+                        backgroundColor:'blue'
+                    }
+                }
+            }
+        };
+        const Page = {
+            template: `<GridView>
+                        <GridBlock class="items" tabIndex="1"></GridBlock>
+                        <GridBlock class="items" tabIndex="2"></GridBlock>
+                        <GridBlock class="items" tabIndex="3"></GridBlock>
+                        <GridBlock class="items" tabIndex="4"></GridBlock>
+                        <GridBlock class="items" tabIndex="5"></GridBlock>
+                        <GridBlock class="items" tabIndex="6"></GridBlock>
+                        <GridBlock class="items" tabIndex="7"></GridBlock>
+                        <GridBlock class="items" tabIndex="8"></GridBlock>
+                        <GridBlock class="items" tabIndex="9"></GridBlock>
+                        <GridBlock class="items" tabIndex="10"></GridBlock>
+                        <GridBlock class="items" tabIndex="11"></GridBlock>
+                        <GridBlock class="items" tabIndex="12"></GridBlock>
+                        <GridBlock class="items" tabIndex="13"></GridBlock>
+                        <GridBlock class="items" tabIndex="14"></GridBlock>
+                        <GridBlock class="items" tabIndex="15"></GridBlock>
+                      </GridView>`,
+            components: {
+                GridView,
+                GridBlock
+            }
+        };
+
+        const routes = [
+            { path: '/', component: Page }
+        ];
+        const router = new VueRouter({
+            routes
+        });
+        const app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+
+</html>
